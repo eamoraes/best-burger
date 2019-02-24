@@ -17,36 +17,36 @@
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>	
 </head>
 <body>
-	<div class="panel panel-default" style="margin: 10px">
-		<div class="panel-heading">
-			<h1 class="panel-title">Cadastro de convidados</h1>
-		</div>
+	<form class="form-inline" method="POST" th:action="@{/guests}"
+		th:object="${guest}"
+		style="margin: 20px 0">
+		<div class="panel panel-default" style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Cadastro de convidados</h1>
+			</div>
 		<div class="panel-body">
 		
-			<form class="form-inline" method="POST" th:action="@{/guests}"
-				th:object="${guest}"
-				style="margin: 20px 0">
-				<div class="col-sm-12">
-					<input type="hidden" th:field="*{id}"/>
-					
-					<div class="form-group col-md-3 col-sm-6">
-					<label>Nome</label>
-					<input type="text" class="form-control" 
-						placeholder="Nome" th:field="*{name}"/>
-					</div>					
-					
-					<div >
-					<label>Acompanhantes</label>
-					<input type="text" class="form-control"	
-						placeholder="Acompanhantes" th:field="*{companionAmount}"/>
-					</div>
-				</div>
-			</form>
+		<div class="col-sm-12">
+			<input type="hidden" th:field="*{id}"/>
+			
+			<div class="form-group col-md-3 col-sm-6">
+				<label>Nome</label>
+				<input type="text" class="form-control" 
+					placeholder="Nome" th:field="*{name}"/>
+			</div>					
+		
+			<div class="form-group col-md-3 col-sm-6">
+				<label>Acompanhantes</label>
+				<input type="text" class="form-control"	
+					placeholder="Acompanhantes" th:field="*{companionAmount}"/>
+			</div>
 		</div>
-		<div class="panel-footer">
-			<button type="submit"
-			class="btn btn-success">Gravar</button>
 		</div>
-	</div>
+			<div class="panel-footer">
+				<button type="submit"
+				class="btn btn-success">Gravar</button>
+			</div>	
+		</div>
+	</form>
 </body>
 </html>

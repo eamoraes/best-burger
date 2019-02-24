@@ -22,7 +22,17 @@
 			<h1 class="panel-title">Lista de convidados</h1>
 		</div>
 		<div class="panel-body">
-		
+					<form class="form-inline" method="POST" th:action="@{/guests/search}"
+				th:object="${guest}" style="margin: 20px 0">
+				<div class="form-group">
+					<input type="text" class="form-control" id="nome"
+						th:field="*{name}" placeholder="Nome" /> <input type="text"
+						class="form-control" id="quantidadeAcompanhantes"
+						th:field="*{companionAmount}" placeholder="Acompanhantes" />
+
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</div>
+			</form>
 			<table class="table">
 				<thead>
 					<tr>
