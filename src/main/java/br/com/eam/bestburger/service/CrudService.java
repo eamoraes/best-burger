@@ -48,5 +48,9 @@ public class CrudService<T extends EntityBase<ID>, ID> {
 	public Page<T> findAll(Example<T> example, Pageable pageable) {
 		return repository.findAll(example, pageable);
 	}
+	
+	public List<T> findAll(Example<T> example) {
+		return repository.findAll(example);
+	}
 
 }

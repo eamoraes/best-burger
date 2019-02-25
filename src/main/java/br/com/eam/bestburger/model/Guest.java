@@ -12,6 +12,16 @@ public class Guest extends Auditable<Long> {
 	private String name;
 	
 	private Integer companionAmount;
+	
+	public Guest() {
+		
+	}
+
+	public Guest(String name, Integer companionAmount) {
+		super();
+		this.name = name;
+		this.companionAmount = companionAmount;
+	}
 
 	public String getName() {
 		return name;

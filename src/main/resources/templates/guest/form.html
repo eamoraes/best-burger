@@ -24,29 +24,32 @@
 			<div class="panel-heading">
 				<h1 class="panel-title">Cadastro de convidados</h1>
 			</div>
-		<div class="panel-body">
-		
-		<div class="col-sm-12">
-			<input type="hidden" th:field="*{id}"/>
-			
-			<div class="form-group col-md-3 col-sm-6">
-				<label>Nome</label>
-				<input type="text" class="form-control" 
-					placeholder="Nome" th:field="*{name}"/>
-			</div>					
-		
-			<div class="form-group col-md-3 col-sm-6">
-				<label>Acompanhantes</label>
-				<input type="text" class="form-control"	
-					placeholder="Acompanhantes" th:field="*{companionAmount}"/>
+				
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<input type="hidden" th:field="*{id}"/>
+					
+					<div class="fform-group col-md-3 col-sm-6">
+						<label>Nome</label>
+						<input type="text" class="form-control" 
+							placeholder="Nome" th:field="*{name}"/>
+					</div>					
+				
+					<div class="form-group col-md-9 col-sm-6">
+						<label>Acompanhantes</label>
+						<input type="text" class="form-control"	
+							placeholder="Acompanhantes" th:field="*{companionAmount}"/>
+					</div>
+				</div>
 			</div>
-		</div>
-		</div>
+			
 			<div class="panel-footer">
 				<button type="submit"
-				class="btn btn-success">Gravar</button>
+				class="btn btn-success">
+					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Gravar
+				</button>
 			</div>	
-		</div>
+		</div>	
 	</form>
 </body>
 </html>

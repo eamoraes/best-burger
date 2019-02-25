@@ -10,9 +10,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,7 +72,7 @@ public class GuestController {
 	
 	@PostMapping("/search")
 	public String search(Guest guest,
-			@PageableDefault(page = 0, size = 10, sort = "id") Pageable pageRequest, 
+			//@PageableDefault(page = 0, size = 10, sort = "id") Pageable pageRequest, 
 			Model model) {
 		
 		ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnoreCase().
@@ -83,10 +80,12 @@ public class GuestController {
 									withMatcher("companionAmount", exact());
 
 		Example<Guest> search = Example.of(guest, matcher);
-
-		Page<Guest> guests = this.guestService.findAll(search, pageRequest);
 		
-		List<Guest> guests2 = guests.getContent();
+		//Page<Guest> guests = this.guestService.findAll(search, pageRequest);
+		
+		//List<Guest> guests2 = guests.getContent();
+
+		List<Guest> guests2 = this.guestService.findAll(search);
 		
 		model.addAttribute("guests", guests2);
 		
