@@ -10,6 +10,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,4 +94,23 @@ public class GuestController {
 		
 		return list(model);
 	}
+	
+    @GetMapping("/listGuests")
+    public String listGuests(Guest guest,
+      Model model, 
+      @PageableDefault(page = 0, size = 5, sort = "id") 
+      Pageable pageRequest) {
+    	ExampleMatcher matcher = ExampleMatcher.matchingAll().withIgnoreCase().
+				withMatcher("name", contains().ignoreCase()).
+				withMatcher("companionAmount", exact());
+
+		Example<Guest> search = Example.of(guest, matcher);
+ 
+        Page<Guest> guestPage = guestService.findAll(search, pageRequest);
+        
+        
+        model.addAttribute("guestPage", guestPage);
+ 
+        return "listGuests";
+    }
 }
