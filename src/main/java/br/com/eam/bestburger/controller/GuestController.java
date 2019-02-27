@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.eam.bestburger.model.Guest;
@@ -108,8 +109,8 @@ public class GuestController {
  
         Page<Guest> guestPage = guestService.findAll(search, pageRequest);
         
-        
         model.addAttribute("guestPage", guestPage);
+
  
         return "listGuests";
     }

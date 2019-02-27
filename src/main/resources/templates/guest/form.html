@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
 
-	<title>Cadastro de Convidados</title>
+	<title th:text="#{guest.form.title}"></title>
 	
 	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
 		rel="stylesheet" />
@@ -18,36 +18,54 @@
 </head>
 <body>
 	<form class="form-inline" method="POST" th:action="@{/guests}"
-		th:object="${guest}"
-		style="margin: 20px 0">
-		<div class="panel panel-default" style="margin: 10px">
+		th:object="${guest}" style="margin: 20px 0">
+		<div class="panel panel-primary" style="margin: 10px">
 			<div class="panel-heading">
-				<h1 class="panel-title">Cadastro de convidados</h1>
+				<h1 class="panel-title" th:text="#{guest.form.title}"></h1>
 			</div>
 				
 			<div class="panel-body">
-				<div class="col-sm-12">
-					<input type="hidden" th:field="*{id}"/>
-					
-					<div class="fform-group col-md-3 col-sm-6">
-						<label>Nome</label>
-						<input type="text" class="form-control" 
-							placeholder="Nome" th:field="*{name}"/>
-					</div>					
-				
-					<div class="form-group col-md-9 col-sm-6">
-						<label>Acompanhantes</label>
-						<input type="text" class="form-control"	
-							placeholder="Acompanhantes" th:field="*{companionAmount}"/>
-					</div>
+				<div class="form-group">
+					<fieldset>
+						<div class="form-group">
+							<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+								<div th:each="detailedError : ${#fields.detailedErrors()}">
+									<span th:text="${detailedError.message}"></span>
+								</div>
+							</div>
+						</div> 					
+						<div class="form-group">
+						    <div class="col-md-1" th:hidden="${id > 0} ? false : true">
+						    	<label>Id</label>
+						        <input class="form-control input" id="id" th:field="*{id}" readOnly="readonly" size="10"/>
+						    </div>
+						</div>
+						<div class="form-group">                                                          
+							<div class="col-md-4" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+							    <label>Nome</label>
+							    <input type="text" class="form-control" th:field="*{name}" autofocus="autofocus" 
+							    placeholder="Nome" maxlength="80" size="50"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-4" th:classappend="${#fields.hasErrors('companionAmount')}? 'has-error'">
+								<label>Acompanhantes</label> 
+								<input type="text" class="form-control input" th:field="*{companionAmount}" 
+								placeholder="Acompanhantes" size="15"/>
+							</div>
+						</div>		
+					</fieldset>
 				</div>
 			</div>
 			
 			<div class="panel-footer">
 				<button type="submit"
-				class="btn btn-success">
+					class="btn btn-success">
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Gravar
 				</button>
+				<a th:href="@{/guests/form}" class="btn btn-danger">
+					<span aria-hidden="true"></span> Cancelar
+				</a>
 			</div>	
 		</div>	
 	</form>
